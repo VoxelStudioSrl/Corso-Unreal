@@ -10,7 +10,19 @@
 				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/Player/BP_Player.uasset",
 				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/Coin/BP_Coin.uasset",
 				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/Cannon/Bp_Projectile.uasset",
-				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/Player/Input/IA_Input_ball.uasset"
+				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/Player/Input/IA_Input_ball.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/WE_Life.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/WE_Coins.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/W_HUD.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/BP_HUD.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/GM_Ball.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/W_Window.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/W_PauseMenu.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/Blueprint/Player/Input/InputAction/IA_Pause.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/Assets/T_Icon_Coins.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/Assets/T_Icon_Heart.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/Assets/Teko-Medium.uasset",
+				"D:/Git/Corso-Unreal/Corso/Content/UserInterface/Assets/Teko-Medium_Font.uasset"
 			]
 		}
 	]
