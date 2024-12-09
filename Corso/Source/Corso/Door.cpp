@@ -20,11 +20,35 @@ void ADoor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (animating)
+	{
+		float angle = FMath::Lerp(startAngle, endAngle, animTimer / animDuration);
+		SetActorRotation(FRotator(0, angle, 0));
+		animTimer += DeltaTime;
+
+		if (animTimer >= animDuration)
+		{
+			animating = false;
+			animTimer = 0;
+		}
+	}
 }
 
 void ADoor::Interact()
 {
 	UE_LOG(LogTemp, Display, TEXT("Door Interact"));
+	animating = true;
+	open = !open;
+	if (open)
+	{
+		startAngle = 0;
+		endAngle = 90;
+	}
+	else
+	{
+		startAngle = 90;
+		endAngle = 0;
+	}
 }
 
 void ADoor::InteractBP_Implementation()

@@ -13,7 +13,7 @@ class CORSO_API UPlayerInteractionComponent : public USceneComponent
 public:
 	UPlayerInteractionComponent();
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	TScriptInterface<IInteractable> CurrentInteractable;
 
 protected:
@@ -21,4 +21,7 @@ protected:
 
 public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	UFUNCTION(BlueprintCallable)
+	void InteractPressed();
 };

@@ -10,16 +10,20 @@ class CORSO_API ADoor : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
+public:
 	ADoor();
 
+	bool open = false;
+	bool animating = false;
+	float animDuration = 1.f;
+	float animTimer = 0;
+	float startAngle = 0;
+	float endAngle = 90;
+
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void Interact() override;

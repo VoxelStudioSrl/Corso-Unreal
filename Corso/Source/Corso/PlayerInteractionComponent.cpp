@@ -36,6 +36,13 @@ void UPlayerInteractionComponent::TickComponent(float DeltaTime, ELevelTick Tick
 	if (interactable)
 	{
 		CurrentInteractable = actor;
+	}
+}
+
+void UPlayerInteractionComponent::InteractPressed()
+{
+	if (CurrentInteractable)
+	{
 		CurrentInteractable->Interact();
 	}
 }
