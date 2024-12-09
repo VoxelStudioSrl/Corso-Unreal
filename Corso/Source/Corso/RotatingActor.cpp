@@ -31,7 +31,7 @@ void ARotatingActor::BeginPlay()
 void ARotatingActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	
 	AddActorLocalRotation(FRotator(RotatingSpeed * DeltaTime, 0, 0));
 
 	OnTestDelegate.Broadcast(DeltaTime);

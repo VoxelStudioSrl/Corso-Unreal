@@ -1,5 +1,7 @@
 #include "PlayerInteractionComponent.h"
 
+#include "Kismet/KismetSystemLibrary.h"
+
 // Sets default values for this component's properties
 UPlayerInteractionComponent::UPlayerInteractionComponent()
 {
@@ -22,18 +24,19 @@ void UPlayerInteractionComponent::TickComponent(float DeltaTime, ELevelTick Tick
 
 	FHitResult hit;
 	auto start = GetComponentLocation();
-	FVector end = GetComponentLocation() + GetForwardVector() * 1000.f;
+	FVector end = GetComponentLocation() + GetForwardVector() * 100.f;
 
 	FColor drawColor = FColor::Green;
 	if (GetWorld()->LineTraceSingleByChannel(hit, start, end, ECC_Visibility))
 	{
 		drawColor = FColor::Red;
-		DrawDebugSphere(GetWorld(), hit.Location, 15, 16, drawColor);
+		DrawDebugSphere(GetWorld(), hit.Location, 5, 16, drawColor);
 	}
 	DrawDebugLine(GetWorld(), start, end, drawColor);
 	auto actor = hit.GetActor();
-	IInteractable* interactable = Cast<IInteractable>(actor);
-	if (interactable)
+
+	// fix for blueprint only actors
+	if (UKismetSystemLibrary::DoesImplementInterface(actor, UInteractable::StaticClass()))
 	{
 		CurrentInteractable = actor;
 	}
@@ -48,6 +51,10 @@ void UPlayerInteractionComponent::InteractPressed()
 	if (CurrentInteractable)
 	{
 		CurrentInteractable->Interact();
+	}
+	// fix for blueprint only actors
+	else if (CurrentInteractable.GetObject())
+	{
 		IInteractable::Execute_InteractBP(CurrentInteractable.GetObject());
 	}
 }
