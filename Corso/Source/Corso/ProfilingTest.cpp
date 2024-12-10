@@ -26,7 +26,7 @@ void AProfilingTest::BigFunction()
 	{
 		sum += FVector(1, 1, 1);
 	}
-
+	
 	{
 		QUICK_SCOPE_CYCLE_COUNTER(STAT_BigFunction_Part2);
 

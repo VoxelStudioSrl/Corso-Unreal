@@ -9,8 +9,10 @@ AShootingTarget::AShootingTarget()
 	PrimaryActorTick.bCanEverTick = true;
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	RotationRoot = CreateDefaultSubobject<USceneComponent>(TEXT("RotationRoot"));
+	RotationRoot->SetupAttachment(RootComponent);
 	TargetMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TargetMesh"));
-	TargetMesh->SetupAttachment(RootComponent);
+	TargetMesh->SetupAttachment(RotationRoot);
 }
 
 void AShootingTarget::BeginPlay()
@@ -34,10 +36,14 @@ void AShootingTarget::Tick(float DeltaTime)
 void AShootingTarget::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	FVector NormalImpulse, const FHitResult& Hit)
 {
+	if (!bTargetEnabled)
+	{
+		return;
+	}
 	UE_LOG(LogTemp, Display, TEXT("Target Hit!"))
 
 	bTargetEnabled = false;
-	DisableAnimation();
+	DisableAnimation(false);
 
 	auto gm = Cast<AShootingRangeGameMode>(UGameplayStatics::GetGameMode(this));
 	if (gm)
@@ -46,7 +52,7 @@ void AShootingTarget::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActo
 	}
 }
 
-void AShootingTarget::SwitchState(bool enableTarget)
+void AShootingTarget::SwitchState(bool enableTarget, bool disableReset)
 {
 	bTargetEnabled = enableTarget;
 	if (enableTarget)
@@ -54,7 +60,7 @@ void AShootingTarget::SwitchState(bool enableTarget)
 		EnableAnimation();
 	} else
 	{
-		DisableAnimation();
+		DisableAnimation(disableReset);
 	}
 }
 

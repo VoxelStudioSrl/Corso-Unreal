@@ -24,6 +24,7 @@ void AShootingRangeGameMode::StartMinigame()
 	timer = 30;
 	score = 0;
 	activated = true;
+	SwitchTargets(true);
 }
 
 void AShootingRangeGameMode::Tick(float DeltaSeconds)
@@ -39,6 +40,8 @@ void AShootingRangeGameMode::Tick(float DeltaSeconds)
 
 		if (timer <= 0)
 		{
+			timer = 0;
+			OnTimerChanged(TEXT("0.000"));
 			StopMinigame();
 		}
 	}
@@ -53,6 +56,7 @@ void AShootingRangeGameMode::OnTargetHit(int32 _score)
 void AShootingRangeGameMode::StopMinigame()
 {
 	activated = false;
+	SwitchTargets(false);
 }
 
 void AShootingRangeGameMode::SwitchTargets(bool targetsEnabled)
@@ -65,7 +69,7 @@ void AShootingRangeGameMode::SwitchTargets(bool targetsEnabled)
 		auto target = Cast<AShootingTarget>(actor);
 		if (target)
 		{
-			target->SwitchState(targetsEnabled);
+			target->SwitchState(targetsEnabled, true);
 		}
 	}
 }

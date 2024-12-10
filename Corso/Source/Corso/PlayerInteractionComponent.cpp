@@ -24,7 +24,7 @@ void UPlayerInteractionComponent::TickComponent(float DeltaTime, ELevelTick Tick
 
 	FHitResult hit;
 	auto start = GetComponentLocation();
-	FVector end = GetComponentLocation() + GetForwardVector() * 100.f;
+	FVector end = GetComponentLocation() + GetForwardVector() * 200.f;
 
 	FColor drawColor = FColor::Green;
 	if (GetWorld()->LineTraceSingleByChannel(hit, start, end, ECC_Visibility))
@@ -36,7 +36,7 @@ void UPlayerInteractionComponent::TickComponent(float DeltaTime, ELevelTick Tick
 	auto actor = hit.GetActor();
 
 	// fix for blueprint only actors
-	if (UKismetSystemLibrary::DoesImplementInterface(actor, UInteractable::StaticClass()))
+	if (actor && actor->Implements<UInteractable>())
 	{
 		CurrentInteractable = actor;
 	}

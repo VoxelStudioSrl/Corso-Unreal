@@ -18,7 +18,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UTargetData* TargetData;
-	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	USceneComponent* RotationRoot;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* TargetMesh;
 
@@ -33,13 +35,13 @@ public:
 		FVector NormalImpulse, const FHitResult& Hit);
 
 	// Apply rotation in blueprint
-	UFUNCTION(BlueprintImplementableEvent)
-	void DisableAnimation();
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void DisableAnimation(bool disableReset);
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void EnableAnimation();
 
 	UFUNCTION(BlueprintCallable)
-	void SwitchState(bool enableTarget);
+	void SwitchState(bool enableTarget, bool disableReset = false);
 
 private:
 	void LoadTexture();
